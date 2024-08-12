@@ -256,7 +256,7 @@ GEM
     ruby-vips (2.2.2)
       ffi (~> 1.12)
       logger
-    rubyzip (2.3.2)
+    rubyzip (3.0.0.alpha)
     securerandom (0.3.1)
     selenium-webdriver (4.23.0)
       base64 (~> 0.2)
@@ -350,7 +350,7 @@ DEPENDENCIES
   puma (>= 5.0)
   rails (~> 7.2.0)
   rubocop-rails-omakase
-  rubyzip (~> 2.0)
+  rubyzip (= 3.0.0.alpha)
   selenium-webdriver
   sprockets-rails
   sqlite3 (>= 1.4)

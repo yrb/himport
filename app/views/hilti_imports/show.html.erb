@@ -6,6 +6,10 @@
 
     <%= render @hilti_import %>
 
+    <h1><%= @hilti_import.project_name %></h1>
+    <pre><%= @hilti_import.project_data %></pre>
+
+
     <%= link_to "Edit this hilti import", edit_hilti_import_path(@hilti_import), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to "Back to hilti imports", hilti_imports_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <div class="inline-block ml-2">

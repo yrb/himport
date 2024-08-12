@@ -1,5 +1,10 @@
 <div id="<%= dom_id hilti_import %>">
   <p class="my-5">
+    <strong class="block font-medium mb-1">Project:</strong>
+    <%= hilti_import.project_name %>
+  </p>
+
+  <p class="my-5">
     <strong class="block font-medium mb-1">Label:</strong>
     <%= hilti_import.label %>
   </p>
@@ -13,10 +18,4 @@
     <strong class="block font-medium mb-1">Sent at:</strong>
     <%= hilti_import.sent_at %>
   </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Archive:</strong>
-    <%= link_to hilti_import.archive.filename, hilti_import.archive if hilti_import.archive.attached? %>
-  </p>
-
 </div>
