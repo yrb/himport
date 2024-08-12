@@ -100,7 +100,16 @@ GEM
       reline (>= 0.3.8)
     drb (2.2.1)
     erubi (1.13.0)
+    ffi (1.17.0-aarch64-linux-gnu)
+    ffi (1.17.0-aarch64-linux-musl)
+    ffi (1.17.0-arm-linux-gnu)
+    ffi (1.17.0-arm-linux-musl)
+    ffi (1.17.0-arm64-darwin)
+    ffi (1.17.0-x86-linux-gnu)
+    ffi (1.17.0-x86-linux-musl)
+    ffi (1.17.0-x86_64-darwin)
     ffi (1.17.0-x86_64-linux-gnu)
+    ffi (1.17.0-x86_64-linux-musl)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.5)
@@ -276,6 +285,7 @@ GEM
       railties (>= 6.0.0)
     stringio (3.1.1)
     strscan (3.1.0)
+    table_print (1.5.7)
     tailwindcss-rails (2.7.2)
       railties (>= 7.0.0)
     tailwindcss-rails (2.7.2-aarch64-linux)
@@ -345,6 +355,7 @@ DEPENDENCIES
   sprockets-rails
   sqlite3 (>= 1.4)
   stimulus-rails
+  table_print
   tailwindcss-rails
   turbo-rails
   tzinfo-data

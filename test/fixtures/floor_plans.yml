@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  hilti_import: one
+  reference: MyString
+
+two:
+  hilti_import: two
+  reference: MyString
