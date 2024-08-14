@@ -1,0 +1,41 @@
+<div class="mx-auto md:w-2/3 w-full flex">
+  <div class="mx-auto">
+    <% if notice.present? %>
+      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <% end %>
+
+    <%= render @import_project %>
+
+    <%= link_to "Add Hilti Export", new_hilti_import_path(import_project_id: @import_project.id), class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+
+    <div class="my-5">
+      <strong class="block font-medium mb-1">Fields:</strong>
+      <ul>
+        <% @import_project.inspection_template.fields.each do |field| %>
+          <li><%= field %></li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="my-5">
+      <strong class="block font-medium mb-1">Lists:</strong>
+      <% @import_project.inspection_template.lists.each do |list| %>
+        <div>
+
+          <h1><%= list.label %></h1>
+          <ul>
+            <% Array(list['items']).each do |item| %>
+              <li><%= item %></li>
+            <% end %>
+          </ul>
+      <% end %>
+      </div>
+    </div>
+
+    <%= link_to "Edit this import project", edit_import_project_path(@import_project), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Back to import projects", import_projects_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <div class="inline-block ml-2">
+      <%= button_to "Destroy this import project", @import_project, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+    </div>
+  </div>
+</div>

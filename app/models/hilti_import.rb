@@ -1,4 +1,5 @@
 class HiltiImport < ApplicationRecord
+  belongs_to :import_project
   has_one_attached :archive
   has_many :floor_plans, dependent: :destroy
   has_many :inspection_images, dependent: :destroy

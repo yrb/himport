@@ -37,7 +37,8 @@ class ProcessHiltiImportJob < ApplicationJob
               puts e.message
             end
           end
-
+          hilti_import.save!
+          hilti_import.create_projects
           hilti_import.processed = true
           hilti_import.save!
         end

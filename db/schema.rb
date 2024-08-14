@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_08_13_050305) do
+ActiveRecord::Schema[7.2].define(version: 2024_08_14_050414) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -45,6 +45,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_13_050305) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "clarinspect_id"
+    t.json "metadata"
     t.index ["hilti_import_id"], name: "index_floor_plans_on_hilti_import_id"
     t.index ["reference"], name: "index_floor_plans_on_reference", unique: true
   end
@@ -57,6 +58,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_13_050305) do
     t.text "penetrations"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "import_project_id", null: false
+    t.index ["import_project_id"], name: "index_hilti_imports_on_import_project_id"
   end
 
   create_table "hilti_projects", force: :cascade do |t|
@@ -74,6 +77,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_13_050305) do
     t.string "building"
     t.index ["hilti_import_id"], name: "index_hilti_projects_on_hilti_import_id"
     t.index ["reference"], name: "index_hilti_projects_on_reference", unique: true
+  end
+
+  create_table "import_projects", force: :cascade do |t|
+    t.string "label"
+    t.integer "organisation_id"
+    t.json "template"
+    t.string "token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "inspection_images", force: :cascade do |t|
@@ -98,6 +110,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_13_050305) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "floor_plans", "hilti_imports"
+  add_foreign_key "hilti_imports", "import_projects"
   add_foreign_key "hilti_projects", "hilti_imports"
   add_foreign_key "inspection_images", "hilti_imports"
   add_foreign_key "test_reports", "hilti_imports"

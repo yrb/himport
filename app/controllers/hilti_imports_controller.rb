@@ -12,7 +12,7 @@ class HiltiImportsController < ApplicationController
 
   # GET /hilti_imports/new
   def new
-    @hilti_import = HiltiImport.new
+    @hilti_import = HiltiImport.new import_project_id: params[:import_project_id]
   end
 
   # GET /hilti_imports/1/edit
@@ -65,6 +65,6 @@ class HiltiImportsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def hilti_import_params
-      params.require(:hilti_import).permit(:label, :archive)
+      params.require(:hilti_import).permit(:label, :archive, :import_project_id)
     end
 end
