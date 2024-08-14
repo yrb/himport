@@ -4,6 +4,8 @@ class CreateHiltiImports < ActiveRecord::Migration[7.2]
       t.string :label
       t.boolean :processed
       t.datetime :sent_at
+      t.text :projects
+      t.text :penetrations
 
       t.timestamps
     end

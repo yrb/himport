@@ -1,9 +1,5 @@
 <div id="<%= dom_id hilti_import %>">
   <p class="my-5">
-    <strong class="block font-medium mb-1">Project:</strong>
-    <%= hilti_import.project_name %>
-  </p>
-
   <p class="my-5">
     <strong class="block font-medium mb-1">Label:</strong>
     <%= hilti_import.label %>
@@ -12,6 +8,16 @@
   <p class="my-5">
     <strong class="block font-medium mb-1">Processed:</strong>
     <%= hilti_import.processed %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Images:</strong>
+    <%= hilti_import.inspection_images.count %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Floor plans: </strong>
+    <%= hilti_import.floor_plans.count %>
   </p>
 
   <p class="my-5">

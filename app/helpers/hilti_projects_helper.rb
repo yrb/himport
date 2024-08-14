@@ -1,0 +1,2 @@
+module HiltiProjectsHelper
+end

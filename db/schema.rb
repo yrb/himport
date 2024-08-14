@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_08_12_003355) do
+ActiveRecord::Schema[7.2].define(version: 2024_08_13_050305) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -41,58 +41,64 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_12_003355) do
 
   create_table "floor_plans", force: :cascade do |t|
     t.integer "hilti_import_id", null: false
-    t.string "reference"
+    t.string "reference", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "clarinspect_id"
     t.index ["hilti_import_id"], name: "index_floor_plans_on_hilti_import_id"
+    t.index ["reference"], name: "index_floor_plans_on_reference", unique: true
   end
 
   create_table "hilti_imports", force: :cascade do |t|
     t.string "label"
     t.boolean "processed"
     t.datetime "sent_at"
+    t.text "projects"
+    t.text "penetrations"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "project_data"
-    t.string "project_name"
+  end
+
+  create_table "hilti_projects", force: :cascade do |t|
+    t.integer "hilti_import_id", null: false
+    t.string "reference", null: false
+    t.string "name"
+    t.string "address"
+    t.json "products"
+    t.json "approvals"
+    t.json "floor_plans"
+    t.json "fields"
+    t.json "configuration"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "building"
+    t.index ["hilti_import_id"], name: "index_hilti_projects_on_hilti_import_id"
+    t.index ["reference"], name: "index_hilti_projects_on_reference", unique: true
   end
 
   create_table "inspection_images", force: :cascade do |t|
     t.integer "hilti_import_id", null: false
-    t.string "reference"
+    t.string "reference", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "clarinspect_id"
     t.index ["hilti_import_id"], name: "index_inspection_images_on_hilti_import_id"
-  end
-
-  create_table "list_reports", force: :cascade do |t|
-    t.integer "hilti_import_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["hilti_import_id"], name: "index_list_reports_on_hilti_import_id"
-  end
-
-  create_table "pdf_reports", force: :cascade do |t|
-    t.integer "hilti_import_id", null: false
-    t.string "reference"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["hilti_import_id"], name: "index_pdf_reports_on_hilti_import_id"
+    t.index ["reference"], name: "index_inspection_images_on_reference", unique: true
   end
 
   create_table "test_reports", force: :cascade do |t|
     t.integer "hilti_import_id", null: false
-    t.string "reference"
+    t.string "reference", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["hilti_import_id"], name: "index_test_reports_on_hilti_import_id"
+    t.index ["reference"], name: "index_test_reports_on_reference", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "floor_plans", "hilti_imports"
+  add_foreign_key "hilti_projects", "hilti_imports"
   add_foreign_key "inspection_images", "hilti_imports"
-  add_foreign_key "list_reports", "hilti_imports"
-  add_foreign_key "pdf_reports", "hilti_imports"
   add_foreign_key "test_reports", "hilti_imports"
 end

@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  hilti_import: one
+  reference: MyString
+  name: MyString
+  address: MyString
+  products: 
+  approvals: 
+  floor_plans: 
+  fields: 
+  configuration: 
+
+two:
+  hilti_import: two
+  reference: MyString
+  name: MyString
+  address: MyString
+  products: 
+  approvals: 
+  floor_plans: 
+  fields: 
+  configuration: 

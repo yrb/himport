@@ -1,0 +1,51 @@
+<div id="<%= dom_id hilti_project %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Hilti import:</strong>
+    <%= hilti_project.hilti_import_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Reference:</strong>
+    <%= hilti_project.reference %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= hilti_project.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Address:</strong>
+    <%= hilti_project.address %>
+  </p>
+
+  <div class="my-5">
+    <strong class="block font-medium mb-1">Products:</strong>
+    <ul>
+    <% hilti_project.products.each do |product| %>
+        <li class="py-2"><%= product %></li>
+    <% end %>
+    </ul>
+  </div>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Approvals:</strong>
+    <%= hilti_project.approvals %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Floor plans:</strong>
+    <%= hilti_project.floor_plans %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Fields:</strong>
+    <%= hilti_project.fields %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Configuration:</strong>
+    <%= hilti_project.configuration %>
+  </p>
+
+</div>
