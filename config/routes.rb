@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :floor_plans
   resources :import_projects
   resources :hilti_projects
   resources :hilti_imports

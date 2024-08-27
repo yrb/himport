@@ -7,6 +7,37 @@
     <%= render @hilti_import %>
 
     <div>
+      <h1>FloorPlans</h1>
+      <table>
+        <tr>
+          <th>Reference</th>
+          <th>Drawing Id</th>
+          <th>Asset Id</th>
+          <th>Preview</th>
+          <th></th>
+        </tr>
+        <tbody>
+        <% @hilti_import.floor_plans.each do |floor_plan| %>
+        <tr>
+          <td><%= floor_plan.reference %></td>
+          <td><%= floor_plan.clarinspect_drawing_id %></td>
+          <td><%= floor_plan.clarinspect_asset_id %></td>
+          <td>
+            <% if floor_plan.data.representable? %>
+              <%= image_tag floor_plan.data.representation(resize_to_limit: [200,200]) %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to "Edit this floor plan", edit_floor_plan_path(floor_plan), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+          </td>
+        </tr>
+        <% end %>
+        </tbody>
+      </table>
+
+    </div>
+
+    <div>
       <h1>Projects</h1>
       <ul>
         <% @hilti_import.hilti_projects.each do |project| %>

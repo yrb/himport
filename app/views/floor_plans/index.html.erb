@@ -1,0 +1,21 @@
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <% content_for :title, "Floor plans" %>
+
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl">Floor plans</h1>
+    <%= link_to "New floor plan", new_floor_plan_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  </div>
+
+  <div id="floor_plans" class="min-w-full">
+    <% @floor_plans.each do |floor_plan| %>
+      <%= render floor_plan %>
+      <p>
+        <%= link_to "Show this floor plan", floor_plan, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      </p>
+    <% end %>
+  </div>
+</div>
