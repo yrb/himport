@@ -1,12 +1,13 @@
 class HiltiProject < ApplicationRecord
   belongs_to :hilti_import
+  has_many :inspections
 
   def label
     "#{reference} #{name} - #{category_name}"
   end
 
   def build_from_document(doc)
-    self.reference = doc.attribute("id").to_s
+    self.reference = doc.attribute("projectId").to_s
     self.category_id = doc.xpath("categoryId/text()").to_s
     self.category_name = doc.xpath("categoryName/text()").to_s
     self.name = doc.xpath("projectName/text()").to_s
@@ -34,11 +35,11 @@ class HiltiProject < ApplicationRecord
       }
     end
 
-    self.floor_plans = doc.xpath("attachments/attachment").map do |approval|
+    self.floor_plans = doc.xpath("attachments/attachment").map do |attachment|
       {
-        id: approval.xpath('attachmentId/text()').to_s,
-        name: approval.xpath('fileName/text()').to_s,
-        floor: approval.xpath('floor/text()').to_s
+        id: attachment.xpath('attachmentId/text()').to_s,
+        name: attachment.xpath('fileName/text()').to_s,
+        floor: attachment.xpath('floor/text()').to_s
       }
     end
 

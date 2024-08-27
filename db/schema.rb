@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_08_27_013800) do
+ActiveRecord::Schema[7.2].define(version: 2024_08_27_024756) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -104,6 +104,22 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_27_013800) do
     t.index ["reference"], name: "index_inspection_images_on_reference", unique: true
   end
 
+  create_table "inspections", force: :cascade do |t|
+    t.bigint "hilti_import_id", null: false
+    t.bigint "hilti_project_id", null: false
+    t.string "reference"
+    t.string "project_id"
+    t.string "category_id"
+    t.text "penetration"
+    t.json "marker"
+    t.string "clarinspect_id"
+    t.json "clarinspect_inspection"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hilti_import_id"], name: "index_inspections_on_hilti_import_id"
+    t.index ["hilti_project_id"], name: "index_inspections_on_hilti_project_id"
+  end
+
   create_table "test_reports", force: :cascade do |t|
     t.bigint "hilti_import_id", null: false
     t.string "reference", null: false
@@ -119,5 +135,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_27_013800) do
   add_foreign_key "hilti_imports", "import_projects"
   add_foreign_key "hilti_projects", "hilti_imports"
   add_foreign_key "inspection_images", "hilti_imports"
+  add_foreign_key "inspections", "hilti_imports"
+  add_foreign_key "inspections", "hilti_projects"
   add_foreign_key "test_reports", "hilti_imports"
 end

@@ -1,0 +1,44 @@
+<div class="mx-auto md:w-2/3 w-full flex">
+  <div class="mx-auto">
+    <% if notice.present? %>
+      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <% end %>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Hilti import:</strong>
+      <%= @inspection.hilti_import_id %>
+    </p>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Hilti project:</strong>
+      <%= @inspection.hilti_project_id %>
+    </p>
+
+    <%= render @inspection %>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Penetration:</strong>
+      <%= @inspection.penetration %>
+    </p>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Clarinspect inspection:</strong>
+      <%= @inspection.clarinspect_inspection %>
+    </p>
+
+    <div>
+      <% if @inspection.floor_plan.present? %>
+        <% floor_plan = @inspection.floor_plan %>
+        <%= floor_plan.page %>
+        <%= link_to floor_plan.reference, floor_plan_path(floor_plan) %>
+        <%= image_tag floor_plan.data.representation(resize_to_limit: [1920,1920]) if floor_plan.data.representable? %>
+      <% end %>
+    </div>
+
+    <%= link_to "Edit this inspection", edit_inspection_path(@inspection), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Back to inspections", inspections_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <div class="inline-block ml-2">
+      <%= button_to "Destroy this inspection", @inspection, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+    </div>
+  </div>
+</div>

@@ -5,6 +5,7 @@ class HiltiImport < ApplicationRecord
   has_many :inspection_images, dependent: :destroy
   has_many :test_reports, dependent: :destroy
   has_many :hilti_projects, dependent: :destroy
+  has_many :inspections, dependent: :destroy
 
   after_create_commit :start_processing
 
@@ -17,6 +18,15 @@ class HiltiImport < ApplicationRecord
       project = HiltiProject.new hilti_import_id: self.id
       project.build_from_document(project_doc)
       project.save!
+    end
+  end
+
+  def create_inspections
+    doc = Nokogiri::XML(penetrations)
+    doc.xpath('//penetration').each do |penetration_doc|
+      inspection = Inspection.new hilti_import_id: self.id
+      inspection.build_from_document(penetration_doc)
+      inspection.save!
     end
   end
 

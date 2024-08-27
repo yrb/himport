@@ -19,7 +19,7 @@
         <tbody>
         <% @hilti_import.floor_plans.each do |floor_plan| %>
         <tr>
-          <td><%= floor_plan.reference %></td>
+          <td><%= link_to floor_plan.reference, floor_plan_path(floor_plan) %></td>
           <td><%= floor_plan.clarinspect_drawing_id %></td>
           <td><%= floor_plan.clarinspect_asset_id %></td>
           <td>

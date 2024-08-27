@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  hilti_import: one
+  hilti_project: one
+  clarinspect_id: MyString
+  reference: MyString
+  project_id: MyString
+  category_id: MyString
+  penetration: MyText
+  clarinspect_inspection: MyText
+
+two:
+  hilti_import: two
+  hilti_project: two
+  clarinspect_id: MyString
+  reference: MyString
+  project_id: MyString
+  category_id: MyString
+  penetration: MyText
+  clarinspect_inspection: MyText

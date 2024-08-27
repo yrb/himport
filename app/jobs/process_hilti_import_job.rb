@@ -38,7 +38,9 @@ class ProcessHiltiImportJob < ApplicationJob
             end
           end
           hilti_import.save!
+          hilti_import.floor_plans.each(&:update_page_coordinates!)
           hilti_import.create_projects
+          hilti_import.create_inspections
           hilti_import.processed = true
           hilti_import.save!
         end
