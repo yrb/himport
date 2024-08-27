@@ -27,7 +27,7 @@ export default class extends Controller {
 
                 ctx.drawImage(img, 0, 0);
 
-                let r = 10;
+                let r = 3;
 
                 ctx.beginPath()
                 let ox = this.oxValue * w;

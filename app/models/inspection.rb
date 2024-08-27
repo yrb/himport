@@ -20,7 +20,7 @@ class Inspection < ApplicationRecord
       Point[self.x * sX, self.y * sY]
     end
 
-    def flipY
+    def flip_y
       Point[self.x, 1.0-self.y]
     end
   end
@@ -29,6 +29,14 @@ class Inspection < ApplicationRecord
     @floor_plan ||= if marker.present?
       hilti_import.floor_plans.find_by reference: self.marker["attachment_id"]
     end
+  end
+
+  def number
+    doc.root.attribute("itemLabel")
+  end
+
+  def doc
+    @doc ||= Nokogiri::XML(penetration)
   end
 
   def marker_location
@@ -42,8 +50,8 @@ class Inspection < ApplicationRecord
       ro = Point[rl[0], rl[1]]
       re = Point[rl[2], rl[3]]
 
-      origin = (ro - b).scale(1.0/s.x, 1.0/s.y).flipY
-      end_point = (re - b).scale(1.0/s.x, 1.0/s.y).flipY
+      origin = (ro - b).scale(1.0/s.x, 1.0/s.y).flip_y
+      end_point = (re - b).scale(1.0/s.x, 1.0/s.y).flip_y
 
       Marker[
         origin:,
@@ -70,6 +78,7 @@ class Inspection < ApplicationRecord
       self.marker = {
         "id": marking_node.attribute("id").to_s,
         "attachment_id": marking_node.attribute("attachmentId").to_s,
+        "label": marking_node.attribute("itemLabel").to_s,
         "location": marking_node.text
       }
     end

@@ -31,8 +31,6 @@
         <% floor_plan = @inspection.floor_plan %>
         <% marker = @inspection.marker_location %>
         <% rep = floor_plan.data.representation(resize_to_limit: [1920,1920])  %>
-        <%= floor_plan.page %>
-        <%= link_to floor_plan.reference, floor_plan_path(floor_plan) %>
         <div data-controller="marker"
              data-marker-src-value="<%= polymorphic_url(rep) %>"
              data-marker-ox-value="<%= marker&.origin&.x || 0.0%>"

@@ -12,8 +12,8 @@
       <% @hilti_project.inspections.each do |inspection| %>
       <tr>
         <td><%= link_to inspection.clarinspect_id, inspection_path(inspection) %></td>
-        <td><%= inspection.marker %></td>
-
+        <td><%= inspection.reference %></td>
+        <td><%= inspection.number %></td>
       </tr>
       <% end %>
       </tbody>

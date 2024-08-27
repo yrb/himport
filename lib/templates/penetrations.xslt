@@ -27,7 +27,10 @@
           <xsl:attribute name="level2">
             <xsl:value-of select="level2" />
           </xsl:attribute>
-          <xsl:attribute name="number">
+          <xsl:attribute name="itemLabel">
+            <xsl:value-of select="itemLabel" />
+          </xsl:attribute>
+          <xsl:attribute name="penetrationNumber">
             <xsl:value-of select="penetrationNumber" />
           </xsl:attribute>
           <xsl:attribute name="createdBy">
@@ -46,6 +49,9 @@
           <marking>
             <xsl:attribute name="id">
               <xsl:value-of select="marking[1]/markingId" />
+            </xsl:attribute>
+            <xsl:attribute name="itemLabel">
+              <xsl:value-of select="marking[1]/itemLabel" />
             </xsl:attribute>
             <xsl:attribute name="attachmentId">
               <xsl:value-of select="marking[1]/attachmentId" />

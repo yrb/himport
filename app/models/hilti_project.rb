@@ -1,6 +1,6 @@
 class HiltiProject < ApplicationRecord
   belongs_to :hilti_import
-  has_many :inspections
+  has_many :inspections, dependent: :destroy
 
   def label
     "#{reference} #{name} - #{category_name}"
