@@ -1,5 +1,5 @@
 class FloorPlan < ApplicationRecord
-  ARCHIVE_PATTERN = "*/Floor Plans/*.pdf".freeze
+  ARCHIVE_PATTERN = "**/Attachment-*.pdf".freeze
   CONTENT_TYPE = "application/pdf".freeze
 
   include ArchiveCreation

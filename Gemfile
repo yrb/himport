@@ -22,6 +22,7 @@ gem "jbuilder"
 gem "redis", ">= 4.0.1"
 gem "nokogiri"
 gem 'rubyzip', "3.0.0.alpha", require: "zip"
+gem 'pg'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"

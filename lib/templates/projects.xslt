@@ -6,8 +6,11 @@
     <projects>
       <xsl:for-each select="//project">
         <xsl:copy>
-          <xsl:attribute name="id">
+          <xsl:attribute name="projectId">
             <xsl:value-of select="projectId" />
+          </xsl:attribute>
+          <xsl:attribute name="categoryId">
+            <xsl:value-of select="categoryId" />
           </xsl:attribute>
           <xsl:copy-of select="*[not(self::penetrations) and not(self::reports)]" />
         </xsl:copy>

@@ -56,6 +56,7 @@
     <orderEntry type="library" scope="PROVIDED" name="erubi (v1.13.0, mise: 3.3.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ffi (v1.17.0, mise: 3.3.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="globalid (v1.2.1, mise: 3.3.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="hotwire-livereload (v1.4.0, mise: 3.3.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="i18n (v1.14.5, mise: 3.3.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="image_processing (v1.13.0, mise: 3.3.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="importmap-rails (v2.0.1, mise: 3.3.4) [gem]" level="application" />
@@ -64,6 +65,7 @@
     <orderEntry type="library" scope="PROVIDED" name="jbuilder (v2.12.0, mise: 3.3.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="json (v2.7.2, mise: 3.3.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="language_server-protocol (v3.17.0.3, mise: 3.3.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="listen (v3.9.0, mise: 3.3.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="logger (v1.6.0, mise: 3.3.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="loofah (v2.22.0, mise: 3.3.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mail (v2.8.1, mise: 3.3.4) [gem]" level="application" />
@@ -80,6 +82,7 @@
     <orderEntry type="library" scope="PROVIDED" name="nokogiri (v1.16.7, mise: 3.3.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="parallel (v1.26.2, mise: 3.3.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="parser (v3.3.4.2, mise: 3.3.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="pg (v1.5.7, mise: 3.3.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="psych (v5.1.2, mise: 3.3.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="public_suffix (v6.0.1, mise: 3.3.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="puma (v6.4.2, mise: 3.3.4) [gem]" level="application" />
@@ -94,7 +97,11 @@
     <orderEntry type="library" scope="PROVIDED" name="railties (v7.2.0, mise: 3.3.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rainbow (v3.1.1, mise: 3.3.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rake (v13.2.1, mise: 3.3.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rb-fsevent (v0.11.2, mise: 3.3.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rb-inotify (v0.11.1, mise: 3.3.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rdoc (v6.7.0, mise: 3.3.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="redis (v5.2.0, mise: 3.3.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="redis-client (v0.22.2, mise: 3.3.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="regexp_parser (v2.9.2, mise: 3.3.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="reline (v0.5.9, mise: 3.3.4) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rexml (v3.3.4, mise: 3.3.4) [gem]" level="application" />
@@ -469,6 +476,13 @@
           <RakeTaskImpl id="importmap">
             <subtasks>
               <RakeTaskImpl description="Setup Importmap for the app" fullCommand="importmap:install" id="install" />
+            </subtasks>
+          </RakeTaskImpl>
+          <RakeTaskImpl id="livereload">
+            <subtasks>
+              <RakeTaskImpl description="Disable Hotwire::Livereload" fullCommand="livereload:disable" id="disable" />
+              <RakeTaskImpl description="Enable Hotwire::Livereload" fullCommand="livereload:enable" id="enable" />
+              <RakeTaskImpl description="Install Hotwire::Livereload into the app" fullCommand="livereload:install" id="install" />
             </subtasks>
           </RakeTaskImpl>
           <RakeTaskImpl id="log">

@@ -1,5 +1,5 @@
 class InspectionImage < ApplicationRecord
-  ARCHIVE_PATTERN = "*/Inspection Images/*.jpg".freeze
+  ARCHIVE_PATTERN = "**/Inspection_Image-*.jpg".freeze
   CONTENT_TYPE = "image/jpg".freeze
 
   include ArchiveCreation

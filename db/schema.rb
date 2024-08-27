@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_08_14_050414) do
+ActiveRecord::Schema[7.2].define(version: 2024_08_27_013800) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -40,12 +43,13 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_14_050414) do
   end
 
   create_table "floor_plans", force: :cascade do |t|
-    t.integer "hilti_import_id", null: false
+    t.bigint "hilti_import_id", null: false
     t.string "reference", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "clarinspect_id"
     t.json "metadata"
+    t.string "clarinspect_drawing_id"
+    t.string "clarinspect_asset_id"
     t.index ["hilti_import_id"], name: "index_floor_plans_on_hilti_import_id"
     t.index ["reference"], name: "index_floor_plans_on_reference", unique: true
   end
@@ -58,12 +62,12 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_14_050414) do
     t.text "penetrations"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "import_project_id", null: false
+    t.bigint "import_project_id", null: false
     t.index ["import_project_id"], name: "index_hilti_imports_on_import_project_id"
   end
 
   create_table "hilti_projects", force: :cascade do |t|
-    t.integer "hilti_import_id", null: false
+    t.bigint "hilti_import_id", null: false
     t.string "reference", null: false
     t.string "name"
     t.string "address"
@@ -75,8 +79,10 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_14_050414) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "building"
+    t.string "category_id"
+    t.string "category_name"
     t.index ["hilti_import_id"], name: "index_hilti_projects_on_hilti_import_id"
-    t.index ["reference"], name: "index_hilti_projects_on_reference", unique: true
+    t.index ["reference", "category_id"], name: "index_hilti_projects_on_reference_and_category_id"
   end
 
   create_table "import_projects", force: :cascade do |t|
@@ -89,17 +95,17 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_14_050414) do
   end
 
   create_table "inspection_images", force: :cascade do |t|
-    t.integer "hilti_import_id", null: false
+    t.bigint "hilti_import_id", null: false
     t.string "reference", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "clarinspect_id"
+    t.string "clarinspect_asset_id"
     t.index ["hilti_import_id"], name: "index_inspection_images_on_hilti_import_id"
     t.index ["reference"], name: "index_inspection_images_on_reference", unique: true
   end
 
   create_table "test_reports", force: :cascade do |t|
-    t.integer "hilti_import_id", null: false
+    t.bigint "hilti_import_id", null: false
     t.string "reference", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

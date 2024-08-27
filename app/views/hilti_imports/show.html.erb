@@ -6,12 +6,11 @@
 
     <%= render @hilti_import %>
 
-
     <div>
       <h1>Projects</h1>
       <ul>
         <% @hilti_import.hilti_projects.each do |project| %>
-          <li><%= link_to project.name, project, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %></li>
+          <li><%= link_to project.label, project, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %></li>
         <% end %>
       </ul>
     </div>

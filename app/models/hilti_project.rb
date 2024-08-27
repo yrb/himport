@@ -1,9 +1,14 @@
 class HiltiProject < ApplicationRecord
   belongs_to :hilti_import
 
+  def label
+    "#{reference} #{name} - #{category_name}"
+  end
 
   def build_from_document(doc)
     self.reference = doc.attribute("id").to_s
+    self.category_id = doc.xpath("categoryId/text()").to_s
+    self.category_name = doc.xpath("categoryName/text()").to_s
     self.name = doc.xpath("projectName/text()").to_s
     self.address = doc.xpath("address1/text()").to_s
     self.building = doc.xpath("building/text()").to_s

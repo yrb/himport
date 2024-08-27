@@ -12,14 +12,20 @@
           <xsl:attribute name="projectId">
             <xsl:value-of select="projectId" />
           </xsl:attribute>
+          <xsl:attribute name="categoryId">
+            <xsl:value-of select="categoryId" />
+          </xsl:attribute>
           <xsl:attribute name="approvalId">
             <xsl:value-of select="approvalId" />
           </xsl:attribute>
           <xsl:attribute name="productId">
             <xsl:value-of select="productId" />
           </xsl:attribute>
-          <xsl:attribute name="level">
+          <xsl:attribute name="level1">
             <xsl:value-of select="level1" />
+          </xsl:attribute>
+          <xsl:attribute name="level2">
+            <xsl:value-of select="level2" />
           </xsl:attribute>
           <xsl:attribute name="number">
             <xsl:value-of select="penetrationNumber" />

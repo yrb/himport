@@ -1,7 +1,7 @@
 class ProcessHiltiImportJob < ApplicationJob
   queue_as :default
 
-  DATA_PATTERN = '*/*.xml'
+  DATA_PATTERN = '**/*.xml'
   TEMPLATE_PATH = File.join(Rails.root, "lib", "templates")
   PROJECT_TEMPLATE = File.join(TEMPLATE_PATH, 'projects.xslt')
   PENETRATIONS_TEMPLATE = File.join(TEMPLATE_PATH, 'penetrations.xslt')
