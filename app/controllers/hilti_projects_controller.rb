@@ -65,6 +65,6 @@ class HiltiProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def hilti_project_params
-      params.require(:hilti_project).permit(:hilti_import_id, :reference, :name, :address, :products, :approvals, :floor_plans, :fields, :configuration)
+      params.require(:hilti_project).permit(:name, :address, :configuration_string)
     end
 end

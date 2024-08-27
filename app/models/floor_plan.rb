@@ -9,6 +9,14 @@ class FloorPlan < ApplicationRecord
   belongs_to :hilti_import
   has_one_attached :data
 
+  def metadata_string
+    self.metadata.to_json
+  end
+
+  def metadata_string=(value)
+    self.metadata = JSON.parse(value)
+  end
+
   def page
     @page ||= OpenStruct.new(metadata["page"])
   end

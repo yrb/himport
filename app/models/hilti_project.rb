@@ -6,6 +6,14 @@ class HiltiProject < ApplicationRecord
     "#{reference} #{name} - #{category_name}"
   end
 
+  def configuration_string
+    configuration.to_json
+  end
+
+  def configuration_string=(value)
+    self.configuration = JSON.parse(value)
+  end
+
   def build_from_document(doc)
     self.reference = doc.attribute("projectId").to_s
     self.category_id = doc.xpath("categoryId/text()").to_s

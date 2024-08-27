@@ -16,10 +16,46 @@
 
     <%= render @inspection %>
 
-    <p class="my-5">
+    <div class="my-5">
       <strong class="block font-medium mb-1">Penetration:</strong>
-      <%= @inspection.penetration %>
-    </p>
+      <table class="table-auto w-full border-collapse">
+        <thead>
+        <tr>
+          <th class="text-left w-52">Name</th>
+          <th class="text-left w-20">Id</th>
+          <th class="text-left">Value</thc>
+        </tr>
+        </thead>
+        <tbody>
+        <% @inspection.doc.root.attributes.each do |name, value| %>
+          <tr>
+            <td><%= name %></td>
+            <td></td>
+            <td><%= value %></td>
+          </tr>
+        <% end %>
+
+        <% @inspection.doc.xpath('penetration/attribute').each do |node| %>
+          <tr>
+            <td><%= node["name"] %></td>
+            <td><%= node["attributeId"] %></td>
+            <td><%= node.text %></td>
+          </tr>
+        <% end %>
+
+        <% @inspection.doc.xpath('penetration/additionalProduct').each do |node| %>
+          <tr>
+            <td>Additional Product</td>
+            <td><%= node["quantity"] %></td>
+            <td><%= node.text %></td>
+          </tr>
+        <% end %>
+
+
+        </tbody>
+      </table>
+
+    </div>
 
     <p class="my-5">
       <strong class="block font-medium mb-1">Clarinspect inspection:</strong>
@@ -27,14 +63,15 @@
     </p>
 
     <div>
+      <h1>Site Plan</h1>
       <% if @inspection.floor_plan.present? %>
         <% floor_plan = @inspection.floor_plan %>
         <% marker = @inspection.marker_location %>
-        <% rep = floor_plan.data.representation(resize_to_limit: [1920,1920])  %>
+        <% rep = floor_plan.data.representation(resize_to_limit: [1920, 1920]) %>
         <div data-controller="marker"
              data-marker-src-value="<%= polymorphic_url(rep) %>"
-             data-marker-ox-value="<%= marker&.origin&.x || 0.0%>"
-             data-marker-oy-value="<%= marker&.origin&.y || 0.0%>"
+             data-marker-ox-value="<%= marker&.origin&.x || 0.0 %>"
+             data-marker-oy-value="<%= marker&.origin&.y || 0.0 %>"
              data-marker-ex-value="<%= marker&.end_point&.x || 0.0 %>"
              data-marker-ey-value="<%= marker&.end_point&.y || 0.0 %>">
           <canvas data-marker-target="canvas">
@@ -44,8 +81,17 @@
       <% end %>
     </div>
 
+    <div class="">
+      <h1>Images</h1>
+      <div class="grid grid-cols-3 gap-1">
+        <% @inspection.images.each do |image| %>
+          <%= image_tag image.data.representation(resize_to_limit: [300, 300]) %>
+        <% end %>
+      </div>
+    </div>
+
     <%= link_to "Edit this inspection", edit_inspection_path(@inspection), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Back to inspections", inspections_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Back to Project", @inspection.hilti_project, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <div class="inline-block ml-2">
       <%= button_to "Destroy this inspection", @inspection, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
     </div>

@@ -33,9 +33,9 @@
   <div class="my-5">
     <strong class="block font-medium mb-1">Products:</strong>
     <ul>
-    <% hilti_project.products.each do |product| %>
+      <% hilti_project.products.each do |product| %>
         <li class="py-2"><%= product %></li>
-    <% end %>
+      <% end %>
     </ul>
   </div>
 
@@ -49,10 +49,22 @@
     <%= hilti_project.floor_plans %>
   </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Fields:</strong>
-    <%= hilti_project.fields %>
-  </p>
+  <div class="my-5">
+    <h1 class="block text-lg font-medium p-2 bg-gray-100 border rounded-t-lg">Fields</h1>
+    <ul class="border-x border-b rounded-b-lg pt-3 px-3">
+      <% hilti_project.fields.each do |field| %>
+        <li class="block mb-4">
+          <h2><%= field["name"] %> (<%= field["id"] %>)</h2>
+          <h3 class="text-xs p-2">Type: <%= field["type"] %></h3>
+          <div class="text-xs p-2 flex flex-wrap gap-1">
+            <% Array(field["values"]).each do |value| %>
+              <div class="border rounded-md bg-gray-100"><%= value["value"] %></div>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Configuration:</strong>

@@ -34,7 +34,6 @@
         <% end %>
         </tbody>
       </table>
-
     </div>
 
     <div>
@@ -46,10 +45,12 @@
       </ul>
     </div>
 
-    <%= link_to "Edit this hilti import", edit_hilti_import_path(@hilti_import), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Back to hilti imports", hilti_imports_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Back to import project", @hilti_import.import_project, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <div class="inline-block ml-2">
       <%= button_to "Destroy this hilti import", @hilti_import, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
     </div>
+    <pre>
+    <%= @hilti_import.projects %>
+  </pre>
   </div>
 </div>

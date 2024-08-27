@@ -65,6 +65,6 @@ class FloorPlansController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def floor_plan_params
-      params.require(:floor_plan).permit(:clarinspect_drawing_id, :clarinspect_asset_id, :metadata)
+      params.require(:floor_plan).permit(:clarinspect_drawing_id, :clarinspect_asset_id, :metadata_string)
     end
 end

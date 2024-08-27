@@ -60,6 +60,13 @@ class Inspection < ApplicationRecord
     end
   end
 
+  def images
+    doc.xpath("//attachment").map do |attachment|
+      reference = attachment.attribute("id").to_s
+      hilti_import.inspection_images.find_by reference: reference
+    end
+  end
+
 
   def raw_location
     marker["location"].split(",").map(&:to_f)
