@@ -3,7 +3,15 @@ class HiltiProject < ApplicationRecord
   has_many :inspections, dependent: :destroy
 
   def label
-    "#{reference} #{name} - #{category_name}"
+    "#{reference} #{project_data.project_name} - #{category_name}"
+  end
+
+  def project_data
+    @project_data ||= hilti_import.projects_data[reference]
+  end
+
+  def configuration_object
+    JSON.parse(configuration_string, object_class: OpenStruct)
   end
 
   def configuration_string

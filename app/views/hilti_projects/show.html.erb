@@ -6,6 +6,10 @@
 
     <%= render @hilti_project %>
 
+    <pre>
+      <%= @hilti_project.configuration.pretty_inspect %>
+    </pre>
+
     <h1>Inspections</h1>
     <table>
       <tbody>

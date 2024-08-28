@@ -4,6 +4,10 @@
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %>
 
+    <pre>
+      <%= @inspection.build_clarinspect_inspection.pretty_inspect %>
+    </pre>
+
     <p class="my-5">
       <strong class="block font-medium mb-1">Hilti import:</strong>
       <%= @inspection.hilti_import_id %>
@@ -23,7 +27,7 @@
         <tr>
           <th class="text-left w-52">Name</th>
           <th class="text-left w-20">Id</th>
-          <th class="text-left">Value</thc>
+          <th class="text-left">Value</th>
         </tr>
         </thead>
         <tbody>
@@ -85,7 +89,10 @@
       <h1>Images</h1>
       <div class="grid grid-cols-3 gap-1">
         <% @inspection.images.each do |image| %>
-          <%= image_tag image.data.representation(resize_to_limit: [300, 300]) %>
+          <div>
+          <%= image.data %>
+          <%= image_tag image.image.data.representation(resize_to_limit: [300, 300]) %>
+          </div>
         <% end %>
       </div>
     </div>
