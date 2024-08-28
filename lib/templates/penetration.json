@@ -1,0 +1,197 @@
+{
+  "template_id": "template_id",
+  "work_package_id": "work_package_id",
+  "site_plan_field": "floorPlan",
+  "site_plan_template_text": "template_text",
+  "mapping": {
+    "externalReference": {
+      "type": "root_attribute",
+      "attribute": "id",
+      "value_type": "text"
+    },
+    "buildDate": {
+      "type": "pen_attribute",
+      "attribute": "2202153",
+      "value_type": "date"
+    },
+    "projectName": {
+      "type": "project_attribute",
+      "attribute": "project_name",
+      "value_type": "text"
+    },
+    "siteBuilding": {
+      "type": "project_attribute",
+      "attribute": "building",
+      "value_type": "text"
+    },
+    "penReference": {
+      "type": "root_attribute",
+      "attribute": "itemLabel",
+      "value_type": "text"
+    },
+    "products1": {
+      "type": "product",
+      "value_type": "text"
+    },
+    "solutionTestRef": {
+      "type": "approval",
+      "value_type": "text"
+    },
+    "floor": {
+      "type": "level_lookup",
+      "attribute": "level1",
+      "value_type": "text"
+    },
+    "location": {
+      "type": "concatenated",
+      "separator": ", ",
+      "mappers": [
+        {
+          "type": "level_lookup",
+          "attribute": "level2"
+        },
+        {
+          "type": "pen_attribute",
+          "attribute": "2210772"
+        }
+      ],
+      "value_type": "text"
+    },
+    "substrateCategory": {
+      "type": "pen_attribute",
+      "attribute": "2202149",
+      "value_type": "selection"
+    },
+    "substrate": {
+      "type": "pen_attribute",
+      "attribute": "2202150",
+      "value_type": "text"
+    },
+    "fireRating": {
+      "type": "pen_attribute",
+      "attribute": "2202151",
+      "value_type": "selection"
+    },
+    "controlType": {
+      "type": "fixed",
+      "value": {
+        "key": "2",
+        "value": "Fire"
+      },
+      "value_type": "selection"
+    },
+    "itemType": {
+      "type": "fixed",
+      "value": {
+        "key": "SP",
+        "value": "Service Penetration"
+      },
+      "value_type": "selection"
+    },
+    "services": {
+      "type": "pen_attribute",
+      "attribute": "2202152",
+      "value_type": "selection"
+    },
+    "notes7": {
+      "type": "concatenated",
+      "separator": "",
+      "mappers": [
+        {
+          "type": "fixed",
+          "value": "Installed by: "
+        },
+        {
+          "type": "pen_attribute",
+          "attribute": "2202154"
+        }
+      ],
+      "value_type": "text"
+    },
+    "notes1": {
+      "type": "pen_attribute",
+      "attribute": "2202160",
+      "value_type": "text"
+    },
+    "proceed": {
+      "type": "value_map",
+      "value_type": "selection",
+      "value_mapper": {
+        "type": "pen_attribute",
+        "attribute": "2202161"
+      },
+      "options": [
+        [null, null],
+        ["", null],
+        ["No", {"key": "N", "value": "No"}],
+        ["Yes", {"key": "Y", "value": "Yes"}]
+      ]
+
+    },
+    "noProceed": {
+      "type": "pen_attribute",
+      "attribute": "2202162",
+      "value_type": "text"
+    },
+    "photo1_1": {
+      "type": "attachment",
+      "category": "PRE",
+      "index": 1,
+      "value_type": "photo"
+    },
+    "photo2_1": {
+      "type": "attachment",
+      "category": "PRE",
+      "index": 2,
+      "value_type": "photo"
+    },
+    "photo3_1": {
+      "type": "attachment",
+      "category": "PRE",
+      "index": 3,
+      "value_type": "photo"
+    },
+    "photo4_1": {
+      "type": "attachment",
+      "category": "PRE",
+      "index": 4,
+      "value_type": "photo"
+    },
+    "photo1": {
+      "type": "attachment",
+      "category": "POST",
+      "index": 1,
+      "value_type": "photo"
+    },
+    "photo2": {
+      "type": "attachment",
+      "category": "POST",
+      "index": 2,
+      "value_type": "photo"
+    },
+    "photo3": {
+      "type": "attachment",
+      "category": "POST",
+      "index": 3,
+      "value_type": "photo"
+    },
+    "photo4": {
+      "type": "attachment",
+      "category": "POST",
+      "index": 4,
+      "value_type": "photo"
+    },
+    "photo1_7": {
+      "type": "attachment",
+      "category": "POST",
+      "index": 5,
+      "value_type": "photo"
+    },
+    "photo2_7": {
+      "type": "attachment",
+      "category": "POST",
+      "index": 6,
+      "value_type": "photo"
+    }
+  }
+}

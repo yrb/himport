@@ -2,6 +2,8 @@ class Inspection < ApplicationRecord
   belongs_to :hilti_import
   belongs_to :hilti_project
 
+  before_save :set_clarinspect_inspection
+
   module Value
     def self.text(text)
       {
@@ -88,9 +90,15 @@ class Inspection < ApplicationRecord
     end
 
     def self.concatenated(config, inspection)
-      config.mappers.map do |m_config|
+      values = config.mappers.map do |m_config|
         send(m_config.type, m_config, inspection)
-      end.join(config.separator)
+      end
+
+      if config.separator.present?
+        values.join(config.separator)
+      else
+        values
+      end
     end
 
     def self.level_lookup(config, inspection)
@@ -99,9 +107,29 @@ class Inspection < ApplicationRecord
     end
 
     def self.attachment(config, inspection)
-      reference = inspection.doc.xpath(%(//attachment[@category="#{config.category}"][#{config.index}])).first["id"]
+      reference = if config.category.present?
+        inspection.doc.xpath(%(//attachment[@category="#{config.category}"][#{config.index}])).first["id"]
+      else
+        inspection.doc.xpath(%(//attachment[#{config.index}])).first["id"]
+      end
       image = inspection.hilti_import.inspection_images.find_by(reference: reference)
       image.clarinspect_asset_id
+    end
+
+    def self.approval(config, inspection)
+      approval_id = inspection.doc.root.attribute('approvalId').to_s
+      inspection.hilti_project.approval_index[approval_id]["name"]
+    end
+
+    def self.product(config, inspection)
+      product_id = inspection.doc.root.attribute('productId').to_s
+      inspection.hilti_project.product_index[product_id]["name"]
+    end
+
+    def self.value_map(config, inspection)
+      value = send(config.value_mapper.type, config.value_mapper, inspection)
+      option = config.options.detect { |option| option[0] == value }
+      option[1]
     end
   end
 
@@ -211,6 +239,10 @@ class Inspection < ApplicationRecord
 
   def configuration
     hilti_project.configuration_object
+  end
+
+  def set_clarinspect_inspection
+    self.clarinspect_inspection = build_clarinspect_inspection
   end
 
   def build_clarinspect_inspection

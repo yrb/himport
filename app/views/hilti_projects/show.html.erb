@@ -1,32 +1,95 @@
 <div class="mx-auto md:w-2/3 w-full flex">
+
   <div class="mx-auto">
     <% if notice.present? %>
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %>
 
+    <div class="mx-auto text-right">
+      <%= link_to "Edit this hilti project", edit_hilti_project_path(@hilti_project), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= link_to "Back to import", @hilti_project.hilti_import, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      <div class="inline-block ml-2">
+        <%= button_to "Destroy this hilti project", @hilti_project, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      </div>
+    </div>
+
     <%= render @hilti_project %>
 
-    <pre>
-      <%= @hilti_project.configuration.pretty_inspect %>
-    </pre>
+    <div class="my-5">
+      <h1 class="block text-lg font-medium p-2 bg-gray-100 border rounded-t-lg">Mapping Configuration</h1>
+      <div class="border-x border-b rounded-b-lg pt-3 px-3 grid grid-cols-[1fr_1fr_3fr] gap-y-2">
+        <% @hilti_project.configuration["mapping"].each do |reference, field| %>
+            <div><%= reference %></div>
+            <div><%= field["type"] %></div>
+            <div><%= field.except("type") %></div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="my-5">
+      <h1 class="block text-lg font-medium p-2 bg-gray-100 border rounded-t-lg">Lookup Field Templates</h1>
+      <table class="border-x border-b rounded-b-lg pt-3 px-3">
+        <% @hilti_project.fields.each do |field| %>
+            <tr>
+              <td><%= field["name"] %> (<%= field["id"] %>)</td>
+              <td><%= field["type"] %></td>
+              <% if field["type"] == "lov" %>
+              <td>
+<%= JSON.generate Array(field["values"].map{ |v| [v["value"], {"key" => "", "value" => ""}]}) %>
+              </td>
+              <% end  %>
+          <% end %>
+          </tr>
+      </table>
+    </div>
 
     <h1>Inspections</h1>
     <table>
       <tbody>
       <% @hilti_project.inspections.each do |inspection| %>
-      <tr>
-        <td><%= link_to inspection.clarinspect_id, inspection_path(inspection) %></td>
-        <td><%= inspection.reference %></td>
-        <td><%= inspection.number %></td>
-      </tr>
+        <tr>
+          <td><%= link_to inspection.clarinspect_id, inspection_path(inspection) %></td>
+          <td><%= inspection.reference %></td>
+          <td><%= inspection.number %></td>
+        </tr>
       <% end %>
       </tbody>
     </table>
 
-    <%= link_to "Edit this hilti project", edit_hilti_project_path(@hilti_project), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Back to import", @hilti_project.hilti_import, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to "Destroy this hilti project", @hilti_project, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+    <div class="my-5">
+      <strong class="block font-medium mb-1">Products:</strong>
+      <ul>
+        <% @hilti_project.products.each do |product| %>
+          <li class="py-2"><%= product %></li>
+        <% end %>
+      </ul>
     </div>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Approvals:</strong>
+      <%= @hilti_project.approvals %>
+    </p>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Floor plans:</strong>
+      <%= @hilti_project.floor_plans %>
+    </p>
+
+
+    <div>
+      <h1>Project Data</h1>
+    <pre>
+      <%= @hilti_project.project_data.to_h.except(:levels, :level_values).pretty_inspect %>
+    </pre>
+    </div>
+
+    <div>
+      <h1>Configuration</h1>
+      <pre>
+<%= JSON.pretty_generate(@hilti_project.configuration) %>
+    </pre>
+    </div>
+
+
   </div>
 </div>

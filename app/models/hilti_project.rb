@@ -2,6 +2,8 @@ class HiltiProject < ApplicationRecord
   belongs_to :hilti_import
   has_many :inspections, dependent: :destroy
 
+  after_save_commit :regenerate_inspections!
+
   def label
     "#{reference} #{project_data.project_name} - #{category_name}"
   end
@@ -10,16 +12,34 @@ class HiltiProject < ApplicationRecord
     @project_data ||= hilti_import.projects_data[reference]
   end
 
+  def approval_index
+    @approval_index ||= approvals.index_by{|v| v["id"] }
+  end
+
+  def product_index
+    @product_index ||= products.index_by{|v| v["id"] }
+  end
+
   def configuration_object
     JSON.parse(configuration_string, object_class: OpenStruct)
   end
 
   def configuration_string
-    configuration.to_json
+    JSON.pretty_generate(configuration)
   end
 
   def configuration_string=(value)
     self.configuration = JSON.parse(value)
+  end
+
+  def regenerate_inspections!
+    inspections.find_in_batches do |group|
+      group.each do |inspection|
+        inspection.save!
+      rescue StandardError
+        Rails.logger.warn("Failed to regenerate inspection #{inspection.id}")
+      end
+    end
   end
 
   def build_from_document(doc)

@@ -1,0 +1,134 @@
+{
+  "template_id": "template_id",
+  "work_package_id": "work_package_id",
+  "site_plan_field": "floorPlan",
+  "site_plan_template_text": "template_text",
+  "mapping": {
+    "externalReference": {
+      "type": "root_attribute",
+      "attribute": "id",
+      "value_type": "text"
+    },
+    "installer": {
+      "type": "pen_attribute",
+      "attribute": "2210776",
+      "value_type": "text"
+    },
+    "dateInspected": {
+      "type": "pen_attribute",
+      "attribute": "2210777",
+      "value_type": "date"
+    },
+    "projectName": {
+      "type": "project_attribute",
+      "attribute": "project_name",
+      "value_type": "text"
+    },
+    "siteBuilding": {
+      "type": "project_attribute",
+      "attribute": "building",
+      "value_type": "text"
+    },
+    "penReference": {
+      "type": "root_attribute",
+      "attribute": "itemLabel",
+      "value_type": "text"
+    },
+    "products1": {
+      "type": "product",
+      "value_type": "text"
+    },
+    "solutionTestRef": {
+      "type": "approval",
+      "value_type": "text"
+    },
+    "floor": {
+      "type": "level_lookup",
+      "attribute": "level1",
+      "value_type": "text"
+    },
+    "location": {
+      "type": "concatenated",
+      "separator": ", ",
+      "mappers": [
+        {
+          "type": "level_lookup",
+          "attribute": "level2"
+        },
+        {
+          "type": "pen_attribute",
+          "attribute": "2210772"
+        }
+      ],
+      "value_type": "text"
+    },
+    "substrateCategory": {
+      "type": "pen_attribute",
+      "attribute": "2210773",
+      "value_type": "selection"
+    },
+    "substrate": {
+      "type": "pen_attribute",
+      "attribute": "2210778",
+      "value_type": "text"
+    },
+    "services": {
+      "type": "pen_attribute",
+      "attribute": "2210774",
+      "value_type": "selection"
+    },
+    "newRem": {
+      "type": "fixed",
+      "value": {
+        "key": "NEW",
+        "value": "Inspection"
+      },
+      "value_type": "selection"
+    },
+    "solutionDescription": {
+      "type": "pen_attribute",
+      "attribute": "2210780",
+      "value_type": "text"
+    },
+    "commentsPass": {
+      "type": "pen_attribute",
+      "attribute": "2210784",
+      "value_type": "text"
+    },
+    "applicableStandards": {
+      "type": "fixed",
+      "value": "BCA C3.15, AS1530.4-2014, AS4072.1-2005",
+      "value_type": "text"
+    },
+    "photo1_7": {
+      "type": "attachment",
+      "index": 1,
+      "value_type": "photo"
+    },
+    "photo2_7": {
+      "type": "attachment",
+      "index": 2,
+      "value_type": "photo"
+    },
+    "photo3_7": {
+      "type": "attachment",
+      "index": 3,
+      "value_type": "photo"
+    },
+    "photo4_7": {
+      "type": "attachment",
+      "index": 4,
+      "value_type": "photo"
+    },
+    "photo5_7": {
+      "type": "attachment",
+      "index": 5,
+      "value_type": "photo"
+    },
+    "photo6_7": {
+      "type": "attachment",
+      "index": 6,
+      "value_type": "photo"
+    }
+  }
+}
