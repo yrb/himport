@@ -11,12 +11,12 @@
     },
     "installer": {
       "type": "pen_attribute",
-      "attribute": "2210776",
+      "attribute": "Installer",
       "value_type": "text"
     },
     "dateInspected": {
       "type": "pen_attribute",
-      "attribute": "2210777",
+      "attribute": "Date",
       "value_type": "date"
     },
     "projectName": {
@@ -67,24 +67,24 @@
         },
         {
           "type": "pen_attribute",
-          "attribute": "2210772"
+          "attribute": "Location"
         }
       ],
       "value_type": "text"
     },
     "substrateCategory": {
       "type": "pen_attribute",
-      "attribute": "2210773",
+      "attribute": "Barrier Type",
       "value_type": "selection"
     },
     "substrate": {
       "type": "pen_attribute",
-      "attribute": "2210778",
+      "attribute": "Construction Type",
       "value_type": "text"
     },
     "services": {
       "type": "pen_attribute",
-      "attribute": "2210774",
+      "attribute": "Penetration Type",
       "value_type": "selection"
     },
     "newRem": {
@@ -97,12 +97,12 @@
     },
     "solutionDescription": {
       "type": "pen_attribute",
-      "attribute": "2210780",
+      "attribute": "Recommended Passive Fire Solution",
       "value_type": "text"
     },
     "commentsPass": {
       "type": "pen_attribute",
-      "attribute": "2210784",
+      "attribute": "Comment",
       "value_type": "text"
     },
     "applicableStandards": {

@@ -18,9 +18,15 @@
     <div class="my-5">
       <h1 class="block text-lg font-medium p-2 bg-gray-100 border rounded-t-lg">Mapping Configuration</h1>
       <div class="border-x border-b rounded-b-lg pt-3 px-3 grid grid-cols-[1fr_1fr_3fr] gap-y-2">
-        <% @hilti_project.configuration["mapping"].each do |reference, field| %>
+        <% (@hilti_project.configuration || {})["mapping"]&.each do |reference, field| %>
             <div><%= reference %></div>
-            <div><%= field["type"] %></div>
+            <div>
+              <%= field["type"] %>
+
+              <% if field["type"] == "pen_attribute" && @hilti_project.field_index[field["attribute"].downcase].blank? %>
+                <div class="bg-red-700 rounded p-2 text-white">Failed to find attribute</div>
+              <% end %>
+            </div>
             <div><%= field.except("type") %></div>
         <% end %>
       </div>

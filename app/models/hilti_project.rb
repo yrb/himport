@@ -20,6 +20,10 @@ class HiltiProject < ApplicationRecord
     @product_index ||= products.index_by{|v| v["id"] }
   end
 
+  def field_index
+    @field_index ||= fields.index_by{ |f| f["name"].downcase }
+  end
+
   def configuration_object
     JSON.parse(configuration_string, object_class: OpenStruct)
   end

@@ -7,17 +7,18 @@
     <%= render @import_project %>
 
 
+    <strong>Hilit Imports</strong>
     <table class="mb-5">
       <tbody>
-      <tr>
         <% @import_project.hilti_imports.each do |hilti_import| %>
+        <tr>
           <td><%= link_to hilti_import.label, hilti_import_path(hilti_import) %></td>
+        </tr>
         <% end %>
-      </tr>
       </tbody>
     </table>
 
-    <%= link_to "Load Hilti Export", new_hilti_import_path(import_project_id: @import_project.id), class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <%= link_to "Load Hilti Import Zip File", new_hilti_import_path(import_project_id: @import_project.id), class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
 
     <%= link_to "Edit this import project", edit_import_project_path(@import_project), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to "Back to import projects", import_projects_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>

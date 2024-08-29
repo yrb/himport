@@ -74,7 +74,13 @@ class Inspection < ApplicationRecord
 
   module Mapper
     def self.pen_attribute(config, inspection)
-      inspection.doc.xpath(%{//attribute[@attributeId="#{config.attribute}"]/text()}).to_s
+      attribute_id = config.attribute_id
+
+      if attribute_id.blank?
+        attribute_id = inspection.hilti_project.field_index[config.attribute.downcase]["id"]
+      end
+
+      inspection.doc.xpath(%{//attribute[@attributeId="#{attribute_id}"]/text()}).to_s
     end
 
     def self.root_attribute(config, inspection)
@@ -253,9 +259,6 @@ class Inspection < ApplicationRecord
     data = InspectionData.new
     begin
       data.add(configuration.site_plan_field, site_plan_value)
-    rescue StandardError
-      nil
-    end
 
     configuration.mapping.to_h.each do |reference, mapping|
       data.add(
@@ -272,6 +275,9 @@ class Inspection < ApplicationRecord
       "work_package_id" => configuration.work_package_id,
       "data" => data.to_hash
     }
+    rescue StandardError
+      {}
+    end
   end
 
   def build_from_document(doc)

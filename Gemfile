@@ -23,6 +23,9 @@ gem "redis", ">= 4.0.1"
 gem "nokogiri"
 gem 'rubyzip', "3.0.0.alpha", require: "zip"
 gem 'pg'
+gem "good_job", "~> 4.2"
+gem "httparty"
+gem "rest-client"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -63,3 +66,4 @@ group :test do
 end
 
 gem "hotwire-livereload", "~> 1.4", :group => :development
+

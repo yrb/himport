@@ -11,7 +11,7 @@
     },
     "buildDate": {
       "type": "pen_attribute",
-      "attribute": "2202153",
+      "attribute": "Date",
       "value_type": "date"
     },
     "projectName": {
@@ -62,24 +62,24 @@
         },
         {
           "type": "pen_attribute",
-          "attribute": "2210772"
+          "attribute": "Location"
         }
       ],
       "value_type": "text"
     },
     "substrateCategory": {
       "type": "pen_attribute",
-      "attribute": "2202149",
+      "attribute": "Barrier Type",
       "value_type": "selection"
     },
     "substrate": {
       "type": "pen_attribute",
-      "attribute": "2202150",
+      "attribute": "Construction Type",
       "value_type": "text"
     },
     "fireRating": {
       "type": "pen_attribute",
-      "attribute": "2202151",
+      "attribute": "FRL",
       "value_type": "selection"
     },
     "controlType": {
@@ -100,7 +100,7 @@
     },
     "services": {
       "type": "pen_attribute",
-      "attribute": "2202152",
+      "attribute": "Penetration Type",
       "value_type": "selection"
     },
     "notes7": {
@@ -113,14 +113,14 @@
         },
         {
           "type": "pen_attribute",
-          "attribute": "2202154"
+          "attribute": "Installer"
         }
       ],
       "value_type": "text"
     },
     "notes1": {
       "type": "pen_attribute",
-      "attribute": "2202160",
+      "attribute": "Number of solution components",
       "value_type": "text"
     },
     "proceed": {
@@ -128,7 +128,7 @@
       "value_type": "selection",
       "value_mapper": {
         "type": "pen_attribute",
-        "attribute": "2202161"
+        "attribute": "Is the solution accessible"
       },
       "options": [
         [null, null],
@@ -140,7 +140,7 @@
     },
     "noProceed": {
       "type": "pen_attribute",
-      "attribute": "2202162",
+      "attribute": "What is required for access",
       "value_type": "text"
     },
     "photo1_1": {

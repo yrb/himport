@@ -65,6 +65,6 @@ class ImportProjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def import_project_params
-      params.require(:import_project).permit(:label, :organisation_id, :template, :token)
+      params.require(:import_project).permit(:label, :organisation_id, :host, :token)
     end
 end

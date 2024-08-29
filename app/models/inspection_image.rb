@@ -6,10 +6,15 @@ class InspectionImage < ApplicationRecord
   include ArchiveCreation
 
   belongs_to :hilti_import
+  has_one :import_project, through: :hilti_import
   has_one_attached :data
 
 
   def set_asset_id
     self.clarinspect_asset_id = SecureRandom.uuid_v4
+  end
+
+  def sync
+    SyncInspectionImageJob.perform_later(self)
   end
 end
