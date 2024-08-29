@@ -30,7 +30,17 @@
       "value_type": "text"
     },
     "products1": {
-      "type": "product",
+      "type": "concatenated",
+      "separator": ", ",
+      "mappers": [
+        {
+          "type": "product"
+        },
+        {
+          "type": "additional_products",
+          "separator": ", "
+        }
+      ],
       "value_type": "text"
     },
     "solutionTestRef": {

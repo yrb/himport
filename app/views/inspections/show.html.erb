@@ -11,18 +11,15 @@
         <%= button_to "Destroy this inspection", @inspection, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
       </div>
     </div>
+    <div class="mt-4 flex justify-between">
+      <% previous_inspection = @inspection.hilti_project.inspections.order(id: :desc).where("id < ?", @inspection.id).limit(1).first %>
+      <div>
+        <%= link_to 'Previous Inspection', previous_inspection, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" if previous_inspection %>
+      </div>
+      <% next_inspection = @inspection.hilti_project.inspections.order(id: :asc).where("id > ?", @inspection.id).limit(1).first %>
+      <%= link_to 'Next Inspection', next_inspection, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" if next_inspection %>
+    </div>
 
-    <p class="my-5">
-      <strong class="block font-medium mb-1">Hilti import:</strong>
-      <%= @inspection.hilti_import_id %>
-    </p>
-
-    <p class="my-5">
-      <strong class="block font-medium mb-1">Hilti project:</strong>
-      <%= @inspection.hilti_project_id %>
-    </p>
-
-    <%= render @inspection %>
 
     <div class="grid grid-cols-2 gap-4">
       <div class="my-5 border rounded-lg p-4">
@@ -96,7 +93,6 @@
       </div>
     </div>
 
-
     <div>
       <h1>Site Plan</h1>
       <% if @inspection.floor_plan.present? %>
@@ -127,6 +123,18 @@
         <% end %>
       </div>
     </div>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Hilti import:</strong>
+      <%= @inspection.hilti_import_id %>
+    </p>
+
+    <p class="my-5">
+      <strong class="block font-medium mb-1">Hilti project:</strong>
+      <%= @inspection.hilti_project_id %>
+    </p>
+
+    <%= render @inspection %>
 
     <div class="my-5">
       <strong class="block font-medium mb-1">Clarinspect inspection:</strong>

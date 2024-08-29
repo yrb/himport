@@ -126,6 +126,10 @@ class Inspection < ApplicationRecord
       inspection.hilti_project.product_index[product_id]["name"]
     end
 
+    def self.additional_products(config, inspection)
+      inspection.doc.xpath('//additionalProduct/text()').map(&:to_s).join(config.separator)
+    end
+
     def self.value_map(config, inspection)
       value = send(config.value_mapper.type, config.value_mapper, inspection)
       option = config.options.detect { |option| option[0] == value }
