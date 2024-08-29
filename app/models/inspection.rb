@@ -1,6 +1,7 @@
 class Inspection < ApplicationRecord
   belongs_to :hilti_import
   belongs_to :hilti_project
+  has_one :import_project, through: :hilti_import
 
   before_save :set_clarinspect_inspection
 
@@ -273,6 +274,7 @@ class Inspection < ApplicationRecord
       "id" => clarinspect_id,
       "assessment_template_id" => configuration.template_id,
       "work_package_id" => configuration.work_package_id,
+      "organisation_id" => import_project.organisation_id,
       "data" => data.to_hash
     }
     rescue StandardError
@@ -297,5 +299,10 @@ class Inspection < ApplicationRecord
         "location": marking_node.text
       }
     end
+  end
+
+
+  def sync
+    SyncInspectionJob.perform_later(self)
   end
 end
