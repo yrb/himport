@@ -1,5 +1,5 @@
 class HiltiProjectsController < ApplicationController
-  before_action :set_hilti_project, only: %i[ show edit update destroy ]
+  before_action :set_hilti_project, only: %i[ show edit update destroy sync_inspections]
 
   # GET /hilti_projects or /hilti_projects.json
   def index
@@ -31,6 +31,16 @@ class HiltiProjectsController < ApplicationController
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @hilti_project.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def sync_inspections
+    @hilti_project.inspections.find_in_batches do |group|
+      group.each(&:sync)
+    end
+
+    respond_to do |format|
+      format.html { redirect_to hilti_project_url(@hilti_project), notice: "Inspection sync started" }
     end
   end
 

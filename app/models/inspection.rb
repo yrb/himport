@@ -99,7 +99,7 @@ class Inspection < ApplicationRecord
     def self.concatenated(config, inspection)
       values = config.mappers.map do |m_config|
         send(m_config.type, m_config, inspection)
-      end
+      end.reject(&:blank?)
 
       if config.separator.present?
         values.join(config.separator)
@@ -181,7 +181,7 @@ class Inspection < ApplicationRecord
     end
 
     def to_annotation_point
-      [self.x.to_fs(:rounded, precision: 6), self.y.to_fs(:rounded, precision: 6)]
+      { "x" => self.x.to_fs(:rounded, precision: 6), "y" => self.y.to_fs(:rounded, precision: 6) }
     end
   end
 

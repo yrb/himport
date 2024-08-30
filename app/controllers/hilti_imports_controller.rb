@@ -1,5 +1,5 @@
 class HiltiImportsController < ApplicationController
-  before_action :set_hilti_import, only: %i[ show edit update destroy ]
+  before_action :set_hilti_import, only: %i[ show edit update destroy sync_images ]
 
   # GET /hilti_imports or /hilti_imports.json
   def index
@@ -17,6 +17,16 @@ class HiltiImportsController < ApplicationController
 
   # GET /hilti_imports/1/edit
   def edit
+  end
+
+  def sync_images
+    @hilti_import.inspection_images.find_in_batches do |group|
+      group.each(&:sync)
+    end
+
+    respond_to do |format|
+      format.html { redirect_to hilti_import_url(@hilti_import), notice: "Image sync started" }
+    end
   end
 
   # POST /hilti_imports or /hilti_imports.json

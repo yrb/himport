@@ -6,6 +6,8 @@
 
     <%= render @hilti_import %>
 
+    <%= button_to "Push #{@hilti_import.inspection_images.count} images to hub",  sync_images_hilti_import_path(@hilti_import), class: "mt-2 rounded-lg py-3 px-5 bg-green-600 text-white font-medium" %>
+
     <div>
       <h1>FloorPlans</h1>
       <table>

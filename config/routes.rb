@@ -2,8 +2,16 @@ Rails.application.routes.draw do
   resources :inspections
   resources :floor_plans
   resources :import_projects
-  resources :hilti_projects
-  resources :hilti_imports
+  resources :hilti_projects do
+    member do
+      post 'sync_inspections'
+    end
+  end
+  resources :hilti_imports do
+    member do
+      post 'sync_images'
+    end
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

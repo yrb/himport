@@ -12,6 +12,7 @@
         <%= button_to "Destroy this hilti project", @hilti_project, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
       </div>
     </div>
+    <%= button_to "Push #{@hilti_project.inspections.count} inspections to hub",  sync_inspections_hilti_project_path(@hilti_project), class: "mt-2 rounded-lg py-3 px-5 bg-green-600 text-white font-medium" %>
 
     <%= render @hilti_project %>
 
