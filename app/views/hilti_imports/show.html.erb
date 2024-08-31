@@ -1,55 +1,171 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
+<% content_for(:title) do %>
+  <%= @hilti_import.label %>
+<% end %>
 
-    <%= render @hilti_import %>
+<div>
+  <div class="lg:flex lg:items-center lg:justify-between">
+    <div class="min-w-0 flex-1">
+      <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
+        <%= @hilti_import.label %>
+      </h2>
+      <div class="mt-1 flex flex-col sm:mt-0 sm:flex-row sm:flex-wrap sm:space-x-6">
 
-    <%= button_to "Push #{@hilti_import.inspection_images.count} images to hub",  sync_images_hilti_import_path(@hilti_import), class: "mt-2 rounded-lg py-3 px-5 bg-green-600 text-white font-medium" %>
+        <div class="mt-2 flex items-center text-sm text-gray-500">
+          <svg class="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M8.25 6.75a3.75 3.75 0 1 1 7.5 0 3.75 3.75 0 0 1-7.5 0ZM15.75 9.75a3 3 0 1 1 6 0 3 3 0 0 1-6 0ZM2.25 9.75a3 3 0 1 1 6 0 3 3 0 0 1-6 0ZM6.31 15.117A6.745 6.745 0 0 1 12 12a6.745 6.745 0 0 1 6.709 7.498.75.75 0 0 1-.372.568A12.696 12.696 0 0 1 12 21.75c-2.305 0-4.47-.612-6.337-1.684a.75.75 0 0 1-.372-.568 6.787 6.787 0 0 1 1.019-4.38Z" clip-rule="evenodd"/>
+            <path d="M5.082 14.254a8.287 8.287 0 0 0-1.308 5.135 9.687 9.687 0 0 1-1.764-.44l-.115-.04a.563.563 0 0 1-.373-.487l-.01-.121a3.75 3.75 0 0 1 3.57-4.047ZM20.226 19.389a8.287 8.287 0 0 0-1.308-5.135 3.75 3.75 0 0 1 3.57 4.047l-.01.121a.563.563 0 0 1-.373.486l-.115.04c-.567.2-1.156.349-1.764.441Z"/>
+          </svg>
+          <%= @hilti_import.inspection_images.count %> Images
+        </div>
+        <div class="mt-2 flex items-center text-sm text-gray-500">
+          <svg class="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15.75 8.25a.75.75 0 0 1 .75.75c0 1.12-.492 2.126-1.27 2.812a.75.75 0 1 1-.992-1.124A2.243 2.243 0 0 0 15 9a.75.75 0 0 1 .75-.75Z"/>
+            <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM4.575 15.6a8.25 8.25 0 0 0 9.348 4.425 1.966 1.966 0 0 0-1.84-1.275.983.983 0 0 1-.97-.822l-.073-.437c-.094-.565.25-1.11.8-1.267l.99-.282c.427-.123.783-.418.982-.816l.036-.073a1.453 1.453 0 0 1 2.328-.377L16.5 15h.628a2.25 2.25 0 0 1 1.983 1.186 8.25 8.25 0 0 0-6.345-12.4c.044.262.18.503.389.676l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 0 1-1.161.886l-.143.048a1.107 1.107 0 0 0-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 0 1-1.652.928l-.679-.906a1.125 1.125 0 0 0-1.906.172L4.575 15.6Z" clip-rule="evenodd"/>
+          </svg>
+          <%= @hilti_import.floor_plans.count %> Floor plans
+        </div>
 
-    <div>
-      <h1>FloorPlans</h1>
-      <table>
+        <div class="mt-2 flex items-center text-sm text-gray-500">
+          <svg class="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15.75 8.25a.75.75 0 0 1 .75.75c0 1.12-.492 2.126-1.27 2.812a.75.75 0 1 1-.992-1.124A2.243 2.243 0 0 0 15 9a.75.75 0 0 1 .75-.75Z"/>
+            <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM4.575 15.6a8.25 8.25 0 0 0 9.348 4.425 1.966 1.966 0 0 0-1.84-1.275.983.983 0 0 1-.97-.822l-.073-.437c-.094-.565.25-1.11.8-1.267l.99-.282c.427-.123.783-.418.982-.816l.036-.073a1.453 1.453 0 0 1 2.328-.377L16.5 15h.628a2.25 2.25 0 0 1 1.983 1.186 8.25 8.25 0 0 0-6.345-12.4c.044.262.18.503.389.676l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 0 1-1.161.886l-.143.048a1.107 1.107 0 0 0-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 0 1-1.652.928l-.679-.906a1.125 1.125 0 0 0-1.906.172L4.575 15.6Z" clip-rule="evenodd"/>
+          </svg>
+          <% if @hilti_import.processed? %>
+            Ready
+          <% else %>
+            Processing...
+          <% end %>
+        </div>
+        <div class="mt-2 flex items-center text-sm text-gray-500">
+          <svg class="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15.75 8.25a.75.75 0 0 1 .75.75c0 1.12-.492 2.126-1.27 2.812a.75.75 0 1 1-.992-1.124A2.243 2.243 0 0 0 15 9a.75.75 0 0 1 .75-.75Z"/>
+            <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM4.575 15.6a8.25 8.25 0 0 0 9.348 4.425 1.966 1.966 0 0 0-1.84-1.275.983.983 0 0 1-.97-.822l-.073-.437c-.094-.565.25-1.11.8-1.267l.99-.282c.427-.123.783-.418.982-.816l.036-.073a1.453 1.453 0 0 1 2.328-.377L16.5 15h.628a2.25 2.25 0 0 1 1.983 1.186 8.25 8.25 0 0 0-6.345-12.4c.044.262.18.503.389.676l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 0 1-1.161.886l-.143.048a1.107 1.107 0 0 0-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 0 1-1.652.928l-.679-.906a1.125 1.125 0 0 0-1.906.172L4.575 15.6Z" clip-rule="evenodd"/>
+          </svg>
+          <%= @hilti_import.archive.filename %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% if notice.present? %>
+  <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+<% end %>
+
+<div class="divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow-md mt-8">
+  <div class="px-4 py-5 sm:p-6">
+    <div class="sm:flex sm:items-center">
+      <div class="sm:flex-auto">
+        <h1 class="text-base font-semibold leading-6 text-gray-900">Hitli Projects</h1>
+        <p class="mt-2 text-sm text-gray-700">The hilti projects contained within the loaded hilti zip file.</p>
+      </div>
+    </div>
+  </div>
+  <div class="px-4 py-4 sm:px-6 flow-root overflow-hidden">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <table class="w-full text-left">
+        <thead class="bg-white">
         <tr>
-          <th>Reference</th>
-          <th>Drawing Id</th>
-          <th>Asset Id</th>
-          <th>Preview</th>
-          <th></th>
+          <th scope="col" class="relative isolate py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
+            Label
+            <div class="absolute inset-y-0 right-full -z-10 w-screen border-b border-b-gray-200"></div>
+            <div class="absolute inset-y-0 left-0 -z-10 w-screen border-b border-b-gray-200"></div>
+          </th>
+          <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell">Project
+            ID
+          </th>
+          <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 md:table-cell">Address</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Building</th>
+          <th scope="col" class="relative py-3.5 pl-3 text-sm font-semibold text-right">
+            Inspections
+          </th>
         </tr>
+        </thead>
         <tbody>
-        <% @hilti_import.floor_plans.each do |floor_plan| %>
-        <tr>
-          <td><%= link_to floor_plan.reference, floor_plan_path(floor_plan) %></td>
-          <td><%= floor_plan.clarinspect_drawing_id %></td>
-          <td><%= floor_plan.clarinspect_asset_id %></td>
-          <td>
-            <% if floor_plan.data.representable? %>
-              <%= image_tag floor_plan.data.representation(resize_to_limit: [200,200]) %>
-            <% end %>
-          </td>
-          <td>
-            <%= link_to "Edit this floor plan", edit_floor_plan_path(floor_plan), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-          </td>
-        </tr>
+        <% @hilti_import.hilti_projects.each do |project| %>
+          <tr>
+            <td class="relative py-4 pr-3 text-sm font-medium text-gray-900">
+              <%= link_to project.label, hilti_project_path(project) %>
+              <div class="absolute bottom-0 right-full h-px w-screen bg-gray-100"></div>
+              <div class="absolute bottom-0 left-0 h-px w-screen bg-gray-100"></div>
+            </td>
+            <td class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell"><%= project.reference %></td>
+            <td class="hidden px-3 py-4 text-sm text-gray-500 md:table-cell"><%= project.project_data.address %></td>
+            <td class="px-3 py-4 text-sm text-gray-500"><%= project.project_data.building %></td>
+            <td class="relative py-4 pl-3 text-right text-sm font-medium">
+              <%= project.inspections.count %>
+            </td>
+          </tr>
         <% end %>
         </tbody>
       </table>
     </div>
+  </div>
+</div>
 
-    <div>
-      <h1>Projects</h1>
-      <ul>
-        <% @hilti_import.hilti_projects.each do |project| %>
-          <li><%= link_to project.label, project, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %></li>
+
+<div class="divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow-md mt-8">
+  <div class="px-4 py-5 sm:p-6">
+    <div class="sm:flex sm:items-center">
+      <div class="sm:flex-auto">
+        <h1 class="text-base font-semibold leading-6 text-gray-900">Floor plans</h1>
+        <p class="mt-2 text-sm text-gray-700">Floor plans from hitli to prepare for import to clarinspect.</p>
+      </div>
+    </div>
+  </div>
+  <div class="px-4 py-4 sm:px-6 flow-root overflow-hidden">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <table class="w-full text-left">
+        <thead class="bg-white">
+        <tr>
+          <th scope="col" class="relative isolate py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
+            Reference
+            <div class="absolute inset-y-0 right-full -z-10 w-screen border-b border-b-gray-200"></div>
+            <div class="absolute inset-y-0 left-0 -z-10 w-screen border-b border-b-gray-200"></div>
+          </th>
+          <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell">Drawing
+            Id
+          </th>
+          <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 md:table-cell">Asset
+            Id
+          </th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Preview</th>
+          <th scope="col" class="relative py-3.5 pl-3">
+            <span class="sr-only">Edit</span>
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @hilti_import.floor_plans.each do |floor_plan| %>
+          <tr>
+            <td class="relative py-4 pr-3 text-sm font-medium text-gray-900">
+              <%= link_to floor_plan.reference, floor_plan_path(floor_plan) %>
+              <div class="absolute bottom-0 right-full h-px w-screen bg-gray-100"></div>
+              <div class="absolute bottom-0 left-0 h-px w-screen bg-gray-100"></div>
+            </td>
+            <td class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell"><%= floor_plan.clarinspect_drawing_id %></td>
+            <td class="hidden px-3 py-4 text-sm text-gray-500 md:table-cell"><%= floor_plan.clarinspect_asset_id %></td>
+            <td class="px-3 py-4 text-sm text-gray-500">
+              <% if floor_plan.data.representable? %>
+                <%= image_tag floor_plan.data.representation(resize_to_limit: [200, 200]) %>
+              <% end %>
+            </td>
+            <td class="relative py-4 pl-3 text-right text-sm font-medium">
+              <%= link_to "Edit", edit_floor_plan_path(floor_plan), class: "text-indigo-600 hover:text-indigo-900" %>
+            </td>
+          </tr>
         <% end %>
-      </ul>
+        </tbody>
+      </table>
     </div>
+  </div>
+</div>
 
-    <%= link_to "Back to import project", @hilti_import.import_project, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to "Destroy this hilti import", @hilti_import, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-    </div>
+
+
+<div class="mx-auto md:w-2/3 w-full mt-8">
+  <div class="flex flex-row gap-1">
+    <%= button_to "Push #{@hilti_import.inspection_images.count} images to hub", sync_images_hilti_import_path(@hilti_import), class: "rounded-lg py-3 px-5 bg-green-600 text-white font-medium" %>
+    <%= link_to "Back to import project", @hilti_import.import_project, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= button_to "Destroy this hilti import", @hilti_import, method: :delete, class: "rounded-lg py-3 px-5 bg-red-700 text-white font-medium" %>
   </div>
 </div>

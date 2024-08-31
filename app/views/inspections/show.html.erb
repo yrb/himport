@@ -81,7 +81,7 @@
           </tr>
           </thead>
           <tbody>
-          <% @inspection.clarinspect_inspection["data"]&.each do |reference, value| %>
+          <% (@inspection.clarinspect_inspection || {})["data"]&.each do |reference, value| %>
           <tr>
             <td><%= reference %></td>
             <td><%= value %></td>
