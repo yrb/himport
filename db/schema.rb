@@ -210,20 +210,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_29_031938) do
     t.index ["hilti_project_id"], name: "index_inspections_on_hilti_project_id"
   end
 
-  create_table "queue_classic_jobs", force: :cascade do |t|
-    t.text "q_name", null: false
-    t.text "method", null: false
-    t.jsonb "args", null: false
-    t.timestamptz "locked_at"
-    t.integer "locked_by"
-    t.timestamptz "created_at", default: -> { "now()" }
-    t.timestamptz "scheduled_at", default: -> { "now()" }
-    t.index ["q_name", "id"], name: "idx_qc_on_name_only_unlocked", where: "(locked_at IS NULL)"
-    t.index ["scheduled_at", "id"], name: "idx_qc_on_scheduled_at_only_unlocked", where: "(locked_at IS NULL)"
-    t.check_constraint "length(method) > 0", name: "queue_classic_jobs_method_check"
-    t.check_constraint "length(q_name) > 0", name: "queue_classic_jobs_q_name_check"
-  end
-
   create_table "test_reports", force: :cascade do |t|
     t.bigint "hilti_import_id", null: false
     t.string "reference", null: false
