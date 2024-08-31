@@ -71,6 +71,8 @@ class HiltiProjectsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_hilti_project
       @hilti_project = HiltiProject.find(params[:id])
+      @hilti_import = @hilti_project.hilti_import
+      @import_project = @hilti_import.import_project
     end
 
     # Only allow a list of trusted parameters through.

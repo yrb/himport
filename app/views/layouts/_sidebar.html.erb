@@ -1,0 +1,92 @@
+<div class="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6">
+  <div class="flex h-16 shrink-0 items-center">
+    <%= link_to root_path, class: "text-gray-600 hover:text-indigo-600 text-lg font-bold" do %>
+      Clarinspect Importer
+    <% end %>
+  </div>
+  <nav class="flex flex-1 flex-col">
+    <ul role="list" class="flex flex-1 flex-col gap-y-7">
+      <% if @import_project.present? && !@import_project.new_record? %>
+        <li>
+          <div class="text-xs font-semibold leading-6 text-gray-400"><%= @import_project.label %></div>
+          <ul role="list" class="-mx-2 space-y-1">
+            <%= sidebar_item import_project_path(@import_project) do |selected| %>
+              <svg class="h-6 w-6 shrink-0 <%= selected ? "text-indigo-600" : "text-gray-400 group-hover:text-indigo-600" %>" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/>
+              </svg>
+              Dashboard
+            <% end %>
+
+            <%= sidebar_item hilti_imports_path(import_project_id: @import_project.id) do |selected| %>
+              <svg class="h-6 w-6 shrink-0 <%= selected ? "text-indigo-600" : "text-gray-400 group-hover:text-indigo-600" %>" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"/>
+              </svg>
+              Hilti Imports
+            <% end %>
+
+            <li class="border-t border-gray-200">
+              <%= link_to new_hilti_import_path(import_project_id: @import_project), class: "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-400 hover:text-indigo-600 hover:bg-gray-50" do %>
+                <span class="flex h-6 w-6 shrink-0 items-center justify-center group-hover:text-indigo-600">+</span>
+                Load Hilti Zip
+              <% end %>
+            </li>
+          </ul>
+        </li>
+      <% end %>
+      <% if @hilti_import.present? && !@hilti_import.new_record? %>
+        <li>
+          <div class="text-xs font-semibold leading-6 text-gray-400">Hilti Import - <%= @hilti_import.label %></div>
+          <ul role="list" class="-mx-2 mt-2 space-y-1">
+            <%= sidebar_item hilti_import_path(@hilti_import) do |selected| %>
+              <svg class="h-6 w-6 shrink-0 <%= selected ? "text-indigo-600" : "text-gray-400 group-hover:text-indigo-600" %>" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75"/>
+              </svg>
+              Overview
+            <% end %>
+            <% @hilti_import.hilti_projects.each do |hilti_project| %>
+              <li>
+                <% if hilti_project == @hilti_project %>
+                  <%= link_to hilti_project, class: "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 bg-gray-50 text-indigo-600" do %>
+                    <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-200 bg-white text-[0.625rem] font-medium text-gray-400 group-hover:border-indigo-600 group-hover:text-indigo-600"><%= hilti_project.label[0].upcase %></span>
+                    <span class="truncate"><%= hilti_project.label %></span>
+                  <% end %>
+                <% else %>
+                  <%= link_to hilti_project, class: "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:text-indigo-600 hover:bg-gray-50" do %>
+                    <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-200 bg-white text-[0.625rem] font-medium text-gray-400 group-hover:border-indigo-600 group-hover:text-indigo-600"><%= hilti_project.label[0].upcase %></span>
+                    <span class="truncate"><%= hilti_project.label %></span>
+                  <% end %>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+      <% end %>
+      <li class="mt-auto mb-2">
+        <div class="text-xs font-semibold leading-6 text-gray-400">Import Projects</div>
+        <ul role="list" class="-mx-2 mt-2 space-y-1">
+          <% ImportProject.all.each do |import_project| %>
+            <li>
+              <% if import_project == @import_project %>
+                <%= link_to import_project, class: "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 bg-gray-50 text-indigo-600" do %>
+                  <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-200 bg-white text-[0.625rem] font-medium text-gray-400 group-hover:border-indigo-600 group-hover:text-indigo-600"><%= import_project.label[0].upcase %></span>
+                  <span class="truncate"><%= import_project.label %></span>
+                <% end %>
+              <% else %>
+                <%= link_to import_project, class: "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:text-indigo-600 hover:bg-gray-50" do %>
+                  <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-200 bg-white text-[0.625rem] font-medium text-gray-400 group-hover:border-indigo-600 group-hover:text-indigo-600"><%= import_project.label[0].upcase %></span>
+                  <span class="truncate"><%= import_project.label %></span>
+                <% end %>
+              <% end %>
+            </li>
+          <% end %>
+          <li class="border-t border-gray-200 pt-1">
+            <%= link_to new_import_project_path, class: "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-400 hover:text-indigo-600 hover:bg-gray-50" do %>
+              <span class="flex h-6 w-6 shrink-0 items-center justify-center group-hover:text-indigo-600">+</span>
+              Create Import Project
+            <% end %>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</div>

@@ -1,3 +1,7 @@
+<% content_for(:title) do %>
+ <%= @import_project.label %> Import Project
+<% end %>
+
 <div class="mx-auto md:w-2/3 w-full flex">
   <div class="mx-auto">
     <% if notice.present? %>

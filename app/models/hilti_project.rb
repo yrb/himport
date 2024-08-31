@@ -5,7 +5,7 @@ class HiltiProject < ApplicationRecord
   after_save_commit :regenerate_inspections!
 
   def label
-    "#{reference} #{project_data.project_name} - #{category_name}"
+    "#{category_name} - #{project_data.project_name}"
   end
 
   def project_data

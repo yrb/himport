@@ -61,6 +61,9 @@ class InspectionsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_inspection
       @inspection = Inspection.find(params[:id])
+      @hilti_project = @inspection.hilti_project
+      @hilti_import = @hilti_project.hilti_import
+      @import_project = @hilti_import.import_project
     end
 
     # Only allow a list of trusted parameters through.

@@ -3,7 +3,8 @@ class HiltiImportsController < ApplicationController
 
   # GET /hilti_imports or /hilti_imports.json
   def index
-    @hilti_imports = HiltiImport.all
+    @import_project = ImportProject.find(params.require(:import_project_id))
+    @hilti_imports = @import_project.hilti_imports
   end
 
   # GET /hilti_imports/1 or /hilti_imports/1.json
@@ -12,7 +13,8 @@ class HiltiImportsController < ApplicationController
 
   # GET /hilti_imports/new
   def new
-    @hilti_import = HiltiImport.new import_project_id: params[:import_project_id]
+    @import_project = ImportProject.find(params.require(:import_project_id))
+    @hilti_import = HiltiImport.new params.permit(:import_project_id)
   end
 
   # GET /hilti_imports/1/edit
@@ -71,6 +73,7 @@ class HiltiImportsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_hilti_import
       @hilti_import = HiltiImport.find(params[:id])
+      @import_project = @hilti_import.import_project
     end
 
     # Only allow a list of trusted parameters through.

@@ -61,6 +61,8 @@ class FloorPlansController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_floor_plan
       @floor_plan = FloorPlan.find(params[:id])
+      @hilti_import = @floor_plan.hilti_import
+      @import_project = @hilti_import.import_project
     end
 
     # Only allow a list of trusted parameters through.
