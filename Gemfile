@@ -23,7 +23,7 @@ gem "redis", ">= 4.0.1"
 gem "nokogiri"
 gem 'rubyzip', "3.0.0.alpha", require: "zip"
 gem 'pg'
-gem "good_job", "~> 4.2"
+gem "good_job", "~> 4.3"
 gem "httparty"
 gem "rest-client"
 
