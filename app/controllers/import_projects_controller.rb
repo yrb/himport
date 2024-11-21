@@ -3,7 +3,7 @@ class ImportProjectsController < ApplicationController
 
   # GET /import_projects or /import_projects.json
   def index
-    @import_projects = ImportProject.all
+    @import_projects = ImportProject.all.order(created_at: :desc)
   end
 
   # GET /import_projects/1 or /import_projects/1.json

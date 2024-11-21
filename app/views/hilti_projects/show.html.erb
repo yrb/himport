@@ -86,7 +86,7 @@
     <div>
       <h1>Project Data</h1>
     <pre>
-      <%= @hilti_project.project_data.to_h.except(:levels, :level_values).pretty_inspect %>
+      <%= @hilti_project.project_data.to_h.except(:levels, :level_values).inspect %>
     </pre>
     </div>
 

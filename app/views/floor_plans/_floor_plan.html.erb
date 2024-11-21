@@ -6,8 +6,8 @@
 
   <% if floor_plan.data.representable? %>
     <%= image_tag floor_plan.data.representation(resize_to_limit: [800,800]) %>
+    <%= link_to('Download PDF', url_for(floor_plan.data), target: '_blank') %>
   <% end %>
-
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Clarinspect drawing:</strong>
@@ -17,6 +17,11 @@
   <p class="my-5">
     <strong class="block font-medium mb-1">Clarinspect asset:</strong>
     <%= floor_plan.clarinspect_asset_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Page Specification:</strong>
+    <%= floor_plan.page_metadata %>
   </p>
 
   <p class="my-5">

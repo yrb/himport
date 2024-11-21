@@ -172,12 +172,25 @@ class Inspection < ApplicationRecord
       Point[self.x + other.x, self.y + other.y]
     end
 
-    def scale(sX, sY)
-      Point[self.x * sX, self.y * sY]
+    def scale(s_x, s_y)
+      Point[self.x * s_x, self.y * s_y]
     end
 
-    def flip_y
+    # Change coordinate system from lhs to rhs
+    # This requires the point to be normalized
+    def lhs_to_rhs
       Point[self.x, 1.0 - self.y]
+    end
+
+    # This requires the point to be normalized
+    def rotate_page(deg_clockwise)
+      case deg_clockwise.floor
+      when 0 then self
+      when 90 then Point[self.y, 1.0 - self.x]
+      when 180 then Point[1.0 - self.x, 1.0 - self.y]
+      when 270 then Point[1.0 - self.x, 1.0 - self.y]
+      else self
+      end
     end
 
     def to_annotation_point
@@ -204,14 +217,14 @@ class Inspection < ApplicationRecord
                            page = floor_plan.page
                            b = Point[page.bx, page.by]
                            t = Point[page.tx, page.ty]
-                           s = t - b
+                           s = (t - b)
 
                            rl = raw_location
                            ro = Point[rl[0], rl[1]]
                            re = Point[rl[2], rl[3]]
 
-                           origin = (ro - b).scale(1.0 / s.x, 1.0 / s.y).flip_y
-                           end_point = (re - b).scale(1.0 / s.x, 1.0 / s.y).flip_y
+                           origin = (ro - b).scale(1.0 / s.x, 1.0 / s.y).rotate_page(page.rotation).lhs_to_rhs
+                           end_point = (re - b).scale(1.0 / s.x, 1.0 / s.y).rotate_page(page.rotation).lhs_to_rhs
 
                            Marker[
                              origin:,
