@@ -101,10 +101,10 @@ class Inspection < ApplicationRecord
         send(m_config.type, m_config, inspection)
       end.reject(&:blank?)
 
-      if config.separator.present?
-        values.join(config.separator)
-      else
+      if config.separator.nil?
         values
+      else
+        values.join(config.separator)
       end
     end
 
