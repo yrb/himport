@@ -26,7 +26,7 @@ class Inspection < ApplicationRecord
     end
 
     def self.selection(selections)
-      selections = Array(selections).map do |value|
+      selections = Array(selections).reject { |s| s.blank? }.map do |value|
         if value.is_a? Hash
           value
         elsif value.is_a? OpenStruct
